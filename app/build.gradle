@@ -17,12 +17,51 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("../keystore/develop/bleague-develop.jks")
+            storePassword = "123456"
+            keyAlias = "keyNormal"
+            keyPassword = "123454321"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            applicationIdSuffix = ".debug"
+            debuggable = true
+        }
+
+        create("staging") {
+            initWith(getByName("debug"))
+            manifestPlaceholders["hostName"] = "tuan.anh.dep.trai"
+            applicationIdSuffix = ".debugStaging"
+        }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        create("demo") {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
+        }
+        create("full") {
+            applicationId = "tuan.anh.dep.trai"
+            dimension = "version"
+            applicationIdSuffix = ".full"
+            versionNameSuffix = "-full"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
