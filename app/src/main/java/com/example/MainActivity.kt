@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.tvTest.setOnClickListener {
-            val bundle = Bundle();
+            val bundle = Bundle()
+
             val clicked = "yes" // yes-no or 1-0 depending on your app behavior
             bundle.putString("email_feedback", clicked);
             firebaseAnalytics.logEvent("app_review_request", bundle)
