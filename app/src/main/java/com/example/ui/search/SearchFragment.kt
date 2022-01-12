@@ -14,6 +14,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     companion object {
 
         fun constrain(): SearchFragment {
+
             return SearchFragment()
         }
     }
