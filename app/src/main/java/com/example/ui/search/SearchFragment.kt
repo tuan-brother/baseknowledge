@@ -12,6 +12,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     override val layoutID: Int = R.layout.fragment_search
 
     companion object {
+
         fun constrain(): SearchFragment {
             return SearchFragment()
         }
